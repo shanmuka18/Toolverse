@@ -1,0 +1,2388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToolVerse — AI Tools Directory</title>
+<meta name="description" content="Discover the best AI tools, web hosting, and online courses. Your curated directory for working smarter and earning online.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c14;
+    --surface: #0f1520;
+    --surface2: #151d2e;
+    --border: #1e2d45;
+    --accent: #00e5ff;
+    --accent2: #7c3aed;
+    --accent3: #f59e0b;
+    --text: #e8f0fe;
+    --muted: #6b82a8;
+    --green: #10b981;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px; left: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(8,12,20,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px; font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    text-decoration: none;
+  }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-right { display: flex; gap: 12px; align-items: center; }
+  .btn-outline {
+    padding: 8px 18px; border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent; color: var(--text);
+    font-size: 13px; font-family: 'DM Sans', sans-serif;
+    cursor: pointer; transition: all 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-primary {
+    padding: 8px 18px; border-radius: 8px;
+    border: none; background: var(--accent);
+    color: #000; font-size: 13px; font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer; transition: all 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 90px 40px 60px;
+    max-width: 860px; margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: 100px;
+    padding: 6px 16px; margin-bottom: 28px;
+    font-size: 12px; font-weight: 500; color: var(--accent);
+    animation: fadeDown 0.6s ease both;
+  }
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50% { opacity:0.4; transform:scale(1.4); }
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(38px, 6vw, 68px);
+    font-weight: 800; line-height: 1.05;
+    letter-spacing: -2px;
+    animation: fadeDown 0.6s 0.1s ease both;
+  }
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    margin-top: 20px; font-size: 18px;
+    color: var(--muted); line-height: 1.7; font-weight: 300;
+    animation: fadeDown 0.6s 0.2s ease both;
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    margin: 36px auto 0;
+    max-width: 580px; position: relative;
+    animation: fadeDown 0.6s 0.3s ease both;
+  }
+  .search-wrap input {
+    width: 100%; padding: 16px 60px 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px; color: var(--text);
+    font-size: 15px; font-family: 'DM Sans', sans-serif;
+    outline: none; transition: border-color 0.2s;
+  }
+  .search-wrap input:focus { border-color: var(--accent); }
+  .search-wrap input::placeholder { color: var(--muted); }
+  .search-icon {
+    position: absolute; right: 16px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted); font-size: 20px; pointer-events: none;
+  }
+
+  /* STATS */
+  .stats {
+    display: flex; justify-content: center; gap: 48px;
+    padding: 40px; position: relative; z-index: 1;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px; font-weight: 800;
+    color: var(--text);
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* SECTIONS */
+  .section { padding: 60px 40px; position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+  .section-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 28px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px; font-weight: 700;
+  }
+  .see-all {
+    color: var(--accent); font-size: 13px;
+    text-decoration: none; font-weight: 500;
+  }
+  .see-all:hover { text-decoration: underline; }
+
+  .categories {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .cat-pill {
+    padding: 8px 18px; border-radius: 100px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted); font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .cat-pill:hover, .cat-pill.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0,229,255,0.06);
+  }
+  .cat-pill .emoji { font-size: 15px; }
+
+  /* TOOLS GRID */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .tool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 22px;
+    cursor: pointer; transition: all 0.25s;
+    position: relative; overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+  .tool-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .tool-card:hover {
+    border-color: rgba(0,229,255,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+  .tool-card:hover::before { opacity: 1; }
+
+  .tool-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+  .tool-icon {
+    width: 46px; height: 46px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .tool-badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  .badge {
+    padding: 3px 10px; border-radius: 100px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.5px;
+  }
+  .badge-free { background: rgba(16,185,129,0.15); color: var(--green); }
+  .badge-paid { background: rgba(245,158,11,0.15); color: var(--accent3); }
+  .badge-freemium { background: rgba(124,58,237,0.15); color: #a78bfa; }
+  .badge-featured { background: rgba(0,229,255,0.15); color: var(--accent); }
+
+  .tool-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px; font-weight: 700; margin-bottom: 6px;
+  }
+  .tool-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+  .tool-category {
+    font-size: 11px; font-weight: 600;
+    color: var(--muted); text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+  .tool-footer { display: flex; align-items: center; justify-content: space-between; }
+  .tool-rating { display: flex; align-items: center; gap: 5px; font-size: 13px; }
+  .stars { color: var(--accent3); letter-spacing: 1px; }
+  .rating-num { color: var(--muted); }
+  .visit-btn {
+    padding: 7px 16px; border-radius: 8px;
+    background: rgba(0,229,255,0.1);
+    border: 1px solid rgba(0,229,255,0.2);
+    color: var(--accent); font-size: 12px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none;
+  }
+  .visit-btn:hover {
+    background: var(--accent); color: #000;
+    border-color: var(--accent);
+  }
+
+  /* FEATURED BANNER */
+  .featured-banner {
+    background: linear-gradient(135deg, rgba(0,229,255,0.08), rgba(124,58,237,0.08));
+    border: 1px solid rgba(0,229,255,0.15);
+    border-radius: 20px; padding: 32px 36px;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 40px; gap: 20px;
+    position: relative; overflow: hidden;
+  }
+  .featured-banner::before {
+    content: '✦'; position: absolute;
+    right: 160px; top: 20px;
+    font-size: 60px; opacity: 0.04;
+    color: var(--accent);
+  }
+  .featured-left { flex: 1; }
+  .featured-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 10px;
+  }
+  .featured-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px; font-weight: 800; margin-bottom: 8px;
+  }
+  .featured-desc { color: var(--muted); font-size: 14px; line-height: 1.6; }
+  .featured-cta {
+    padding: 12px 28px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), #0099bb);
+    border: none; color: #000; font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none; display: inline-block;
+  }
+  .featured-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,229,255,0.3); }
+
+  /* HOSTING */
+  .hosting-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+  .hosting-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px;
+    transition: all 0.25s;
+  }
+  .hosting-card:hover {
+    border-color: rgba(245,158,11,0.4);
+    transform: translateY(-2px);
+  }
+  .hosting-logo { font-size: 28px; margin-bottom: 12px; }
+  .hosting-name { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+  .hosting-price { color: var(--accent3); font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+  .hosting-features { list-style: none; }
+  .hosting-features li {
+    font-size: 12px; color: var(--muted); padding: 3px 0;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .hosting-features li::before { content: '✓'; color: var(--green); font-weight: 700; }
+  .hosting-affiliate {
+    margin-top: 16px; display: block; text-align: center;
+    padding: 9px; border-radius: 8px;
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.2);
+    color: var(--accent3); font-size: 12px; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .hosting-affiliate:hover { background: var(--accent3); color: #000; }
+
+  /* COURSES */
+  .courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .course-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    transition: all 0.25s;
+  }
+  .course-card:hover { transform: translateY(-3px); border-color: rgba(124,58,237,0.4); }
+  .course-thumb {
+    height: 100px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px;
+  }
+  .course-body { padding: 18px; }
+  .course-platform { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .course-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .course-meta { display: flex; justify-content: space-between; align-items: center; }
+  .course-commission { font-size: 11px; color: var(--green); font-weight: 600; }
+  .course-btn {
+    padding: 6px 14px; border-radius: 7px;
+    background: rgba(124,58,237,0.15);
+    border: 1px solid rgba(124,58,237,0.3);
+    color: #a78bfa; font-size: 11px; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .course-btn:hover { background: var(--accent2); color: #fff; }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; max-width: 720px; width: 100%;
+    max-height: 85vh; overflow-y: auto;
+    padding: 40px; position: relative;
+    animation: fadeUp 0.3s ease;
+  }
+  .modal-close {
+    position: absolute; top: 20px; right: 20px;
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--muted); width: 36px; height: 36px;
+    border-radius: 50%; cursor: pointer;
+    font-size: 18px; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .modal-close:hover { color: var(--text); border-color: var(--accent); }
+  .modal h2 { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+  .modal .modal-date { color: var(--muted); font-size: 12px; margin-bottom: 24px; }
+  .modal h3 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin: 24px 0 8px; color: var(--accent); }
+  .modal p { color: var(--muted); font-size: 14px; line-height: 1.8; margin-bottom: 12px; }
+  .modal ul { color: var(--muted); font-size: 14px; line-height: 1.8; padding-left: 20px; margin-bottom: 12px; }
+  .modal a { color: var(--accent); }
+
+  /* SUBMIT FORM */
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 12px 16px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; color: var(--text);
+    font-size: 14px; font-family: 'DM Sans', sans-serif;
+    outline: none; transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-group select option { background: var(--surface2); }
+  .form-submit {
+    width: 100%; padding: 14px; border-radius: 10px;
+    background: var(--accent); border: none;
+    color: #000; font-size: 15px; font-weight: 700;
+    font-family: 'DM Sans', sans-serif; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .form-submit:hover { opacity: 0.85; transform: translateY(-1px); }
+  .form-note { font-size: 12px; color: var(--muted); margin-top: 12px; text-align: center; }
+
+  /* NEWSLETTER INLINE */
+  .newsletter-bar {
+    background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(0,229,255,0.06));
+    border: 1px solid rgba(124,58,237,0.2);
+    border-radius: 20px; padding: 40px;
+    text-align: center; position: relative; z-index: 1;
+    max-width: 1200px; margin: 0 auto 0; 
+  }
+  .newsletter-bar h3 { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+  .newsletter-bar p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  .newsletter-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; }
+  .newsletter-form input {
+    flex: 1; padding: 12px 18px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; color: var(--text);
+    font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none;
+    transition: border-color 0.2s;
+  }
+  .newsletter-form input:focus { border-color: var(--accent); }
+  .newsletter-form button {
+    padding: 12px 24px; border-radius: 10px;
+    background: var(--accent2); border: none;
+    color: #fff; font-size: 14px; font-weight: 600;
+    font-family: 'DM Sans', sans-serif; cursor: pointer;
+    transition: all 0.2s; white-space: nowrap;
+  }
+  .newsletter-form button:hover { opacity: 0.85; }
+  .newsletter-success { display: none; color: var(--green); font-weight: 600; font-size: 15px; margin-top: 12px; }
+
+  /* FOOTER */
+  footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 48px 40px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .footer-brand .logo { font-size: 20px; margin-bottom: 14px; display: block; }
+  .footer-desc { color: var(--muted); font-size: 13px; line-height: 1.7; }
+  .footer-col h4 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+  .footer-col a {
+    display: block; color: var(--muted); font-size: 13px;
+    text-decoration: none; margin-bottom: 8px; transition: color 0.2s; cursor: pointer;
+  }
+  .footer-col a:hover { color: var(--text); }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding: 20px 40px; text-align: center;
+    color: var(--muted); font-size: 12px;
+    position: relative; z-index: 1;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .footer-bottom a { color: var(--muted); text-decoration: underline; cursor: pointer; }
+  .footer-bottom a:hover { color: var(--text); }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .divider {
+    height: 1px; background: var(--border);
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 60px 20px 40px; }
+    .stats { gap: 24px; padding: 28px 20px; flex-wrap: wrap; }
+    .section { padding: 40px 20px; }
+    footer { grid-template-columns: 1fr 1fr; padding: 40px 20px; }
+    .newsletter-form { flex-direction: column; }
+    .featured-banner { flex-direction: column; }
+  }
+
+  /* ===== CINEMATIC PROMPT GENERATOR ===== */
+  .cpg-wrap {
+    background: linear-gradient(135deg, rgba(0,229,255,0.04), rgba(124,58,237,0.06));
+    border: 1px solid rgba(0,229,255,0.12);
+    border-radius: 20px; padding: 36px;
+    position: relative; overflow: hidden;
+  }
+  .cpg-wrap::before {
+    content: '🎬'; position: absolute;
+    right: 32px; top: 24px;
+    font-size: 64px; opacity: 0.06;
+    pointer-events: none;
+  }
+  .cpg-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 10px;
+  }
+  .cpg-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px; font-weight: 800; margin-bottom: 6px;
+  }
+  .cpg-subtitle { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+  .cpg-textarea {
+    width: 100%; padding: 14px 16px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 12px; color: var(--text);
+    font-size: 14px; font-family: 'DM Sans', sans-serif;
+    outline: none; resize: none; transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+  .cpg-textarea:focus { border-color: var(--accent); }
+  .cpg-textarea::placeholder { color: var(--muted); }
+  .cpg-row { display: flex; gap: 20px; margin-top: 18px; flex-wrap: wrap; }
+  .cpg-col { flex: 1; min-width: 200px; }
+  .cpg-col-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 1px;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 10px; display: block;
+  }
+  .cpg-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cpg-chip {
+    padding: 6px 14px; border-radius: 100px;
+    border: 1px solid var(--border); background: var(--surface);
+    color: var(--muted); font-size: 12px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .cpg-chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.06); }
+  .cpg-chip.cpg-active { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.1); }
+  .cpg-btn {
+    margin-top: 24px; width: 100%; padding: 15px;
+    background: linear-gradient(135deg, var(--accent), #0099bb);
+    border: none; border-radius: 12px;
+    color: #000; font-size: 14px; font-weight: 700;
+    font-family: 'DM Sans', sans-serif; cursor: pointer;
+    transition: all 0.2s; letter-spacing: 0.5px;
+  }
+  .cpg-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,229,255,0.25); }
+  .cpg-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .cpg-result {
+    margin-top: 24px; display: none;
+    animation: fadeUp 0.4s ease both;
+  }
+  .cpg-result.cpg-show { display: block; }
+  .cpg-result-box {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px; margin-bottom: 12px;
+  }
+  .cpg-result-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 10px; display: block;
+  }
+  .cpg-result-text {
+    font-size: 14px; color: var(--muted); line-height: 1.8;
+    font-style: italic;
+  }
+  .cpg-audio-box {
+    background: rgba(0,229,255,0.05); border: 1px solid rgba(0,229,255,0.15);
+    border-radius: 12px; padding: 16px; margin-bottom: 12px;
+  }
+  .cpg-tips-box {
+    background: rgba(124,58,237,0.05); border: 1px solid rgba(124,58,237,0.15);
+    border-radius: 12px; padding: 16px; margin-bottom: 20px;
+  }
+  .cpg-copy-btn {
+    padding: 10px 24px; border-radius: 10px;
+    background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.25);
+    color: var(--accent); font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .cpg-copy-btn:hover { background: var(--accent); color: #000; }
+  .cpg-tools-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px; margin-top: 16px;
+  }
+  .cpg-tool-link {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px; border-radius: 10px;
+    background: var(--surface); border: 1px solid var(--border);
+    text-decoration: none; color: var(--text);
+    font-size: 13px; font-weight: 500;
+    transition: all 0.2s;
+  }
+  .cpg-tool-link:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-1px); }
+  .cpg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .cpg-spinner {
+    display: inline-block; width: 16px; height: 16px;
+    border: 2px solid rgba(0,0,0,0.3); border-top-color: #000;
+    border-radius: 50%; animation: cpg-spin 0.8s linear infinite;
+    vertical-align: middle; margin-right: 8px;
+  }
+  @keyframes cpg-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Tool<span>Verse</span></a>
+  <div class="nav-links">
+    <a href="#ai-tools">AI Tools</a>
+    <a href="#hosting">Web Hosting</a>
+    <a href="#courses">Courses</a>
+    <a href="#video-agent">🎬 Video Agent</a>
+    <a href="#newsletter">Newsletter</a>
+    <a href="#" onclick="openModal('blog-modal')">Blog</a>
+  </div>
+  <div class="nav-right">
+    <a href="#" class="btn-outline" onclick="openModal('submit-modal')">Submit Tool</a>
+    <a href="#newsletter" class="btn-primary">Newsletter</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Curated AI Tools Directory — Updated Weekly</div>
+  <h1>Your Ultimate <span class="highlight">AI Tools</span><br>& Online Resources Hub</h1>
+  <p>Discover the best AI tools, web hosting, and online courses.<br>Everything you need to work smarter and earn online.</p>
+  <div class="search-wrap">
+    <input type="text" placeholder="Search AI tools, hosting, courses..." id="search-input">
+    <span class="search-icon">🔍</span>
+  </div>
+</div>
+
+<!-- STATS — no unverifiable visitor claims -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">20<span>+</span></div>
+    <div class="stat-label">Categories Covered</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">Free<span> &</span></div>
+    <div class="stat-label">Paid Tools Listed</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">Weekly<span></span></div>
+    <div class="stat-label">New Tools Added</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100<span>%</span></div>
+    <div class="stat-label">Honest Reviews</div>
+  </div>
+</div>
+
+<!-- AI TOOLS SECTION -->
+<div class="section" id="ai-tools">
+  <div class="section-header">
+    <div class="section-title">🤖 AI Tools Directory</div>
+    <a href="#ai-tools" class="see-all">See all tools ↓</a>
+  </div>
+
+  <div class="categories" style="margin-bottom:28px;">
+    <div class="cat-pill active" data-cat="all"><span class="emoji">⭐</span> All Tools</div>
+    <div class="cat-pill" data-cat="writing"><span class="emoji">✍️</span> Writing</div>
+    <div class="cat-pill" data-cat="image"><span class="emoji">🎨</span> Image</div>
+    <div class="cat-pill" data-cat="video"><span class="emoji">🎬</span> Video</div>
+    <div class="cat-pill" data-cat="chatbot"><span class="emoji">💬</span> Chatbots</div>
+    <div class="cat-pill" data-cat="seo"><span class="emoji">🔍</span> SEO</div>
+    <div class="cat-pill" data-cat="coding"><span class="emoji">💻</span> Coding</div>
+    <div class="cat-pill" data-cat="audio"><span class="emoji">🎵</span> Audio</div>
+    <div class="cat-pill" data-cat="productivity"><span class="emoji">📊</span> Productivity</div>
+    <div class="cat-pill" data-cat="study"><span class="emoji">🎓</span> Study</div>
+    <div class="cat-pill" data-cat="research"><span class="emoji">🔬</span> Research</div>
+    <div class="cat-pill" data-cat="design"><span class="emoji">🎨</span> Design</div>
+  </div>
+
+  <!-- Featured Banner -->
+  <div class="featured-banner">
+    <div class="featured-left">
+      <div class="featured-tag">⚡ Featured Tool of the Week</div>
+      <div class="featured-title">Jasper AI — Write 10x Faster</div>
+      <div class="featured-desc">The #1 AI writing assistant for bloggers, marketers, and businesses. Generate high-quality content in seconds with 50+ templates.</div>
+    </div>
+    <a href="https://www.jasper.ai" target="_blank" rel="noopener noreferrer nofollow sponsored" class="featured-cta">Try Jasper Free →</a>
+  </div>
+
+  <!-- Tools Grid -->
+  <div class="tools-grid" id="tools-grid">
+
+    <div class="tool-card" data-cat="chatbot" style="animation-delay:0.05s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(16,185,129,0.12)">🤖</div>
+        <div class="tool-badges">
+          <span class="badge badge-free">FREE</span>
+          <span class="badge badge-featured">POPULAR</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Chatbot</div>
+      <div class="tool-name">ChatGPT</div>
+      <div class="tool-desc">The world's most popular AI assistant. Write, code, analyze, and create anything with conversational AI.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.9</span></div>
+        <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="writing" style="animation-delay:0.1s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(245,158,11,0.12)">✍️</div>
+        <div class="tool-badges">
+          <span class="badge badge-paid">PAID</span>
+          <span class="badge badge-featured">TOP PICK</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Writing</div>
+      <div class="tool-name">Jasper AI</div>
+      <div class="tool-desc">Professional AI writing assistant with 50+ templates. Perfect for blogs, ads, and marketing copy.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.8</span></div>
+        <a href="https://www.jasper.ai" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="image" style="animation-delay:0.15s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(124,58,237,0.12)">🎨</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Image Generator</div>
+      <div class="tool-name">Midjourney</div>
+      <div class="tool-desc">Create stunning AI artwork and images from simple text prompts. Used by millions of designers worldwide.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.9</span></div>
+        <a href="https://www.midjourney.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="video" style="animation-delay:0.2s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(0,229,255,0.12)">🎬</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Video</div>
+      <div class="tool-name">Runway ML</div>
+      <div class="tool-desc">Generate and edit professional videos with AI. Turn text into video or edit existing footage with simple prompts.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★☆</span><span class="rating-num">4.6</span></div>
+        <a href="https://runwayml.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="seo" style="animation-delay:0.25s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(245,158,11,0.12)">🔍</div>
+        <div class="tool-badges">
+          <span class="badge badge-paid">PAID</span>
+        </div>
+      </div>
+      <div class="tool-category">AI SEO Tool</div>
+      <div class="tool-name">Surfer SEO</div>
+      <div class="tool-desc">Optimize your content to rank #1 on Google. AI-powered SEO analysis, keyword research, and content scoring.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.7</span></div>
+        <a href="https://surferseo.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="writing" style="animation-delay:0.3s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(16,185,129,0.12)">✏️</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+          <span class="badge badge-featured">POPULAR</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Writing</div>
+      <div class="tool-name">Grammarly</div>
+      <div class="tool-desc">AI-powered writing assistant that fixes grammar, improves clarity, and enhances your writing style in real time.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.8</span></div>
+        <a href="https://www.grammarly.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- STUDY & LEARNING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">🎓 Study & Learning Tools</div>
+    <a href="#" class="see-all">See all →</a>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card" data-cat="study" style="animation-delay:0.05s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(16,185,129,0.12)">📓</div>
+        <div class="tool-badges">
+          <span class="badge badge-free">FREE</span>
+          <span class="badge badge-featured">HOT</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Study Tool</div>
+      <div class="tool-name">NotebookLM</div>
+      <div class="tool-desc">Google's AI tool that turns your own notes and PDFs into a personal tutor. Perfect for exam prep.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.9</span></div>
+        <a href="https://notebooklm.google.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="study" style="animation-delay:0.1s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(0,229,255,0.12)">🧑‍🏫</div>
+        <div class="tool-badges">
+          <span class="badge badge-free">FREE</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Tutor</div>
+      <div class="tool-name">Khanmigo</div>
+      <div class="tool-desc">Khan Academy's AI tutor that guides you through problems step-by-step. Great for math, science, and coding.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★☆</span><span class="rating-num">4.6</span></div>
+        <a href="https://www.khanacademy.org/khan-labs" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="study" style="animation-delay:0.15s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(124,58,237,0.12)">🃏</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+          <span class="badge badge-featured">POPULAR</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Flashcards</div>
+      <div class="tool-name">Quizlet AI</div>
+      <div class="tool-desc">Auto-generates flashcards, quizzes, and practice tests from any topic or uploaded notes. Trusted by students worldwide.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.8</span></div>
+        <a href="https://quizlet.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WRITING & RESEARCH -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">📝 Writing & Research Tools</div>
+    <a href="#" class="see-all">See all →</a>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card" data-cat="research" style="animation-delay:0.05s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(0,229,255,0.12)">🔍</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+          <span class="badge badge-featured">HOT</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Search Engine</div>
+      <div class="tool-name">Perplexity AI</div>
+      <div class="tool-desc">AI-powered search that gives cited, accurate answers instead of just links. No more Wikipedia rabbit holes.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.8</span></div>
+        <a href="https://www.perplexity.ai" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="writing" style="animation-delay:0.1s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(245,158,11,0.12)">🎓</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+        </div>
+      </div>
+      <div class="tool-category">Academic Writing</div>
+      <div class="tool-name">Jenni AI</div>
+      <div class="tool-desc">Built specifically for academic writing. Supports APA, MLA, and Chicago citations. Write essays and research papers faster.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★☆</span><span class="rating-num">4.5</span></div>
+        <a href="https://jenni.ai" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="research" style="animation-delay:0.15s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(16,185,129,0.12)">🔬</div>
+        <div class="tool-badges">
+          <span class="badge badge-free">FREE</span>
+          <span class="badge badge-featured">UNIQUE</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Research Tool</div>
+      <div class="tool-name">Consensus</div>
+      <div class="tool-desc">Searches millions of real scientific papers and summarizes findings with citations. Perfect for essay writing.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.7</span></div>
+        <a href="https://consensus.app" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CODING -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">💻 Coding & Dev Tools</div>
+    <a href="#" class="see-all">See all →</a>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card" data-cat="coding" style="animation-delay:0.05s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(16,185,129,0.12)">👨‍💻</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+          <span class="badge badge-featured">POPULAR</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Code Assistant</div>
+      <div class="tool-name">GitHub Copilot</div>
+      <div class="tool-desc">The industry-standard AI pair programmer. Autocompletes code, suggests functions, and explains errors — free for students.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.9</span></div>
+        <a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="coding" style="animation-delay:0.1s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(0,229,255,0.12)">⚡</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+          <span class="badge badge-featured">HOT</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Code Editor</div>
+      <div class="tool-name">Cursor</div>
+      <div class="tool-desc">An AI-native code editor that rewrites, explains, and debugs entire files with a single command. The fastest way to build software.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.8</span></div>
+        <a href="https://cursor.sh" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="coding" style="animation-delay:0.15s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(124,58,237,0.12)">🚀</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+          <span class="badge badge-featured">TRENDING</span>
+        </div>
+      </div>
+      <div class="tool-category">AI App Builder</div>
+      <div class="tool-name">Bolt.new</div>
+      <div class="tool-desc">Build full-stack web apps just by typing what you want. No coding experience needed — deploy a working app in minutes.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.7</span></div>
+        <a href="https://bolt.new" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PRODUCTIVITY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">🎙️ Productivity & Meeting Tools</div>
+    <a href="#" class="see-all">See all →</a>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card" data-cat="productivity" style="animation-delay:0.05s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(0,229,255,0.12)">🎙️</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+          <span class="badge badge-featured">POPULAR</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Note Taker</div>
+      <div class="tool-name">Otter.ai</div>
+      <div class="tool-desc">Records lectures, meetings, and conversations then gives you instant transcripts and summaries. A must-have for students and professionals.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.7</span></div>
+        <a href="https://otter.ai" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="productivity" style="animation-delay:0.1s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(16,185,129,0.12)">📋</div>
+        <div class="tool-badges">
+          <span class="badge badge-free">FREE</span>
+          <span class="badge badge-featured">HOT</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Meeting Tool</div>
+      <div class="tool-name">Fathom</div>
+      <div class="tool-desc">AI meeting notetaker that auto-joins your Zoom, Google Meet, or Teams calls and delivers a clean summary with action items.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.8</span></div>
+        <a href="https://fathom.video" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="productivity" style="animation-delay:0.15s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(245,158,11,0.12)">🧠</div>
+        <div class="tool-badges">
+          <span class="badge badge-paid">PAID</span>
+          <span class="badge badge-featured">UNIQUE</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Memory Tool</div>
+      <div class="tool-name">Limitless</div>
+      <div class="tool-desc">Wearable AI that remembers everything you say and hear throughout the day. Never forget a meeting, idea, or conversation again.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★☆</span><span class="rating-num">4.5</span></div>
+        <a href="https://www.limitless.ai" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DESIGN & MEDIA -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">🖼️ Design & Media Tools</div>
+    <a href="#" class="see-all">See all →</a>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card" data-cat="design" style="animation-delay:0.05s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(124,58,237,0.12)">🖋️</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+          <span class="badge badge-featured">TRENDING</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Image Generator</div>
+      <div class="tool-name">Ideogram</div>
+      <div class="tool-desc">AI image generator that actually handles text in images correctly — great for posters, logos, and thumbnails.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.7</span></div>
+        <a href="https://ideogram.ai" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="video" style="animation-delay:0.1s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(0,229,255,0.12)">🎬</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+          <span class="badge badge-featured">HOT</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Avatar Video</div>
+      <div class="tool-name">HeyGen</div>
+      <div class="tool-desc">Create professional AI avatar videos for presentations, courses, and content. Just type your script — no camera needed.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.8</span></div>
+        <a href="https://www.heygen.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="audio" style="animation-delay:0.15s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(245,158,11,0.12)">🎧</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+          <span class="badge badge-featured">POPULAR</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Video & Podcast Editor</div>
+      <div class="tool-name">Descript</div>
+      <div class="tool-desc">Edit podcasts and videos by editing the text transcript. Remove filler words, clone your voice, and publish in minutes.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.7</span></div>
+        <a href="https://www.descript.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="design" style="animation-delay:0.2s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(16,185,129,0.12)">🔥</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Image Generator</div>
+      <div class="tool-name">Adobe Firefly</div>
+      <div class="tool-desc">Adobe's commercially safe AI image generation tool. Generate images, fill backgrounds, and edit photos inside Creative Cloud.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★☆</span><span class="rating-num">4.6</span></div>
+        <a href="https://firefly.adobe.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- NICHE TOOLS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">🧠 Niche & Specialist Tools</div>
+    <a href="#" class="see-all">See all →</a>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card" data-cat="research" style="animation-delay:0.05s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(0,229,255,0.12)">📄</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+          <span class="badge badge-featured">UNIQUE</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Research Assistant</div>
+      <div class="tool-name">Elicit</div>
+      <div class="tool-desc">Automatically extracts data, methods, and conclusions from academic papers. Upload 100 papers — summarized in seconds.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.7</span></div>
+        <a href="https://elicit.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="productivity" style="animation-delay:0.1s">
+      <div class="tool-header">
+        <div class="tool-icon" style="background:rgba(124,58,237,0.12)">📊</div>
+        <div class="tool-badges">
+          <span class="badge badge-freemium">FREEMIUM</span>
+          <span class="badge badge-featured">HOT</span>
+        </div>
+      </div>
+      <div class="tool-category">AI Presentation Maker</div>
+      <div class="tool-name">Gamma.app</div>
+      <div class="tool-desc">Creates beautiful presentations, documents, and websites from a single text prompt. Way faster than PowerPoint.</div>
+      <div class="tool-footer">
+        <div class="tool-rating"><span class="stars">★★★★★</span><span class="rating-num">4.8</span></div>
+        <a href="https://gamma.app" target="_blank" rel="noopener noreferrer nofollow sponsored" class="visit-btn">Visit Tool →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WEB HOSTING -->
+<div class="section" id="hosting">
+  <div class="section-header">
+    <div class="section-title">🌐 Best Web Hosting Providers</div>
+    <a href="#hosting" class="see-all">Compare all ↓</a>
+  </div>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:24px;">* Affiliate links — we earn a commission at no extra cost to you. See our <a href="#" onclick="openModal('affiliate-modal')" style="color:var(--accent)">Affiliate Disclosure</a>.</p>
+  <div class="hosting-grid">
+
+    <div class="hosting-card">
+      <div class="hosting-logo">🟠</div>
+      <div class="hosting-name">Hostinger</div>
+      <div class="hosting-price">From $2.99/month</div>
+      <ul class="hosting-features">
+        <li>Free domain included</li>
+        <li>1-click WordPress install</li>
+        <li>99.9% uptime guarantee</li>
+        <li>Free SSL certificate</li>
+        <li>24/7 customer support</li>
+      </ul>
+      <a href="https://www.hostinger.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="hosting-affiliate">Get Hostinger — Best Value →</a>
+    </div>
+
+    <div class="hosting-card">
+      <div class="hosting-logo">🔵</div>
+      <div class="hosting-name">Bluehost</div>
+      <div class="hosting-price">From $2.75/month</div>
+      <ul class="hosting-features">
+        <li>Free domain for 1 year</li>
+        <li>WordPress recommended</li>
+        <li>Free CDN included</li>
+        <li>30-day money back</li>
+        <li>Unmetered bandwidth</li>
+      </ul>
+      <a href="https://www.bluehost.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="hosting-affiliate">Get Bluehost — WordPress Recommended →</a>
+    </div>
+
+    <div class="hosting-card">
+      <div class="hosting-logo">🟢</div>
+      <div class="hosting-name">Shopify</div>
+      <div class="hosting-price">From $29/month</div>
+      <ul class="hosting-features">
+        <li>Built for online stores</li>
+        <li>Payment processing built-in</li>
+        <li>100+ professional themes</li>
+        <li>Mobile-ready stores</li>
+        <li>24/7 support</li>
+      </ul>
+      <a href="https://www.shopify.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="hosting-affiliate">Get Shopify — Start Free Trial →</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- COURSES -->
+<div class="section" id="courses">
+  <div class="section-header">
+    <div class="section-title">📚 Top Online Courses</div>
+    <a href="#courses" class="see-all">Browse all ↓</a>
+  </div>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:24px;">* Affiliate links — we earn a commission at no extra cost to you.</p>
+  <div class="courses-grid">
+
+    <div class="course-card">
+      <div class="course-thumb" style="background:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(0,229,255,0.1))">🤖</div>
+      <div class="course-body">
+        <div class="course-platform" style="color:#a78bfa">Udemy</div>
+        <div class="course-title">Complete AI & ChatGPT Masterclass 2026</div>
+        <div class="course-meta">
+          <span class="course-commission">⭐ 4.7 · 42,000+ students</span>
+          <a href="https://www.udemy.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="course-btn">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-thumb" style="background:linear-gradient(135deg,rgba(245,158,11,0.2),rgba(16,185,129,0.1))">💰</div>
+      <div class="course-body">
+        <div class="course-platform" style="color:var(--accent3)">Coursera</div>
+        <div class="course-title">Digital Marketing & Affiliate Marketing</div>
+        <div class="course-meta">
+          <span class="course-commission">🏆 Bestseller · Beginner friendly</span>
+          <a href="https://www.coursera.org" target="_blank" rel="noopener noreferrer nofollow sponsored" class="course-btn">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-thumb" style="background:linear-gradient(135deg,rgba(0,229,255,0.15),rgba(16,185,129,0.1))">💻</div>
+      <div class="course-body">
+        <div class="course-platform" style="color:var(--accent)">Skillshare</div>
+        <div class="course-title">Web Design for Beginners — Full Course</div>
+        <div class="course-meta">
+          <span class="course-commission">✅ Free trial included</span>
+          <a href="https://www.skillshare.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="course-btn">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-thumb" style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(124,58,237,0.1))">📈</div>
+      <div class="course-body">
+        <div class="course-platform" style="color:var(--accent3)">MasterClass</div>
+        <div class="course-title">How to Build a Successful Online Business</div>
+        <div class="course-meta">
+          <span class="course-commission">🎓 Certificate included</span>
+          <a href="https://www.masterclass.com" target="_blank" rel="noopener noreferrer nofollow sponsored" class="course-btn">View →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CINEMATIC VIDEO PROMPT AGENT -->
+<div class="section" id="video-agent">
+  <div class="section-header">
+    <div class="section-title">🎬 AI Cinematic Prompt Generator</div>
+    <span style="font-size:13px;color:var(--green);font-weight:600;">✦ Free Tool</span>
+  </div>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:24px;">Describe your video idea and get a production-ready cinematic prompt for Google Flow, Kling, Luma, and more — all free.</p>
+
+  <div class="cpg-wrap">
+    <div class="cpg-label">⚡ Powered by AI</div>
+    <div class="cpg-title">Cinematic Video Prompt Agent</div>
+    <div class="cpg-subtitle">Type your idea, pick a vibe and subject — get a prompt ready to paste into any free AI video tool.</div>
+
+    <textarea class="cpg-textarea" id="cpg-idea" rows="3" placeholder="e.g. A lone samurai walking through fog at dawn..."></textarea>
+
+    <div class="cpg-row">
+      <div class="cpg-col">
+        <span class="cpg-col-label">Vibe</span>
+        <div class="cpg-chips" id="cpg-vibes">
+          <button class="cpg-chip" data-val="Epic/Action">⚔️ Epic/Action</button>
+          <button class="cpg-chip" data-val="Sci-Fi/Futuristic">🚀 Sci-Fi</button>
+          <button class="cpg-chip" data-val="Nature/Landscape">🌿 Nature</button>
+          <button class="cpg-chip" data-val="Emotional/Drama">🎭 Drama</button>
+          <button class="cpg-chip" data-val="Horror/Dark">🌑 Horror</button>
+          <button class="cpg-chip" data-val="Fantasy/Magic">✨ Fantasy</button>
+        </div>
+      </div>
+      <div class="cpg-col">
+        <span class="cpg-col-label">Subject</span>
+        <div class="cpg-chips" id="cpg-subjects">
+          <button class="cpg-chip" data-val="Lone warrior">🗡️ Warrior</button>
+          <button class="cpg-chip" data-val="Astronaut">👨‍🚀 Astronaut</button>
+          <button class="cpg-chip" data-val="Ancient city">🏛️ Ancient city</button>
+          <button class="cpg-chip" data-val="Wild animal">🐆 Animal</button>
+          <button class="cpg-chip" data-val="Robot">🤖 Robot</button>
+          <button class="cpg-chip" data-val="Ocean storm">🌊 Ocean</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="cpg-btn" id="cpg-generate-btn" onclick="cpgGenerate()">✦ Generate Cinematic Prompt</button>
+
+    <div class="cpg-result" id="cpg-result">
+      <div class="cpg-result-box">
+        <span class="cpg-result-tag" style="color:var(--accent)">🎬 Cinematic Prompt</span>
+        <div class="cpg-result-text" id="cpg-prompt-text"></div>
+      </div>
+      <div class="cpg-audio-box">
+        <span class="cpg-result-tag" style="color:var(--accent)">🎵 Audio Line</span>
+        <div class="cpg-result-text" id="cpg-audio-text"></div>
+      </div>
+      <div class="cpg-tips-box">
+        <span class="cpg-result-tag" style="color:#a78bfa">💡 Tips</span>
+        <div class="cpg-result-text" id="cpg-tips-text"></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+        <button class="cpg-copy-btn" onclick="cpgCopy()">📋 Copy Full Prompt</button>
+        <span style="font-size:12px;color:var(--muted)">Paste into any tool below ↓</span>
+      </div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:10px;">Paste Into These Free Tools →</div>
+      <div class="cpg-tools-grid">
+        <a href="https://flow.google.com" target="_blank" rel="noopener noreferrer" class="cpg-tool-link">
+          <span class="cpg-dot" style="background:#4285F4"></span>Google Flow
+        </a>
+        <a href="https://klingai.com" target="_blank" rel="noopener noreferrer" class="cpg-tool-link">
+          <span class="cpg-dot" style="background:#FF6B35"></span>Kling AI
+        </a>
+        <a href="https://hailuoai.com" target="_blank" rel="noopener noreferrer" class="cpg-tool-link">
+          <span class="cpg-dot" style="background:#9B59B6"></span>Hailuo AI
+        </a>
+        <a href="https://lumalabs.ai/dream-machine" target="_blank" rel="noopener noreferrer" class="cpg-tool-link">
+          <span class="cpg-dot" style="background:#00D4AA"></span>Luma Dream Machine
+        </a>
+        <a href="https://wavespeed.ai" target="_blank" rel="noopener noreferrer" class="cpg-tool-link">
+          <span class="cpg-dot" style="background:#F39C12"></span>WaveSpeed AI
+        </a>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin-top:14px;">💡 Rotate between all 5 tools daily for maximum free generations.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- NEWSLETTER -->
+<div class="section" id="newsletter" style="padding-bottom:0">
+  <div class="newsletter-bar">
+    <h3>🚀 Stay Ahead of the AI Curve</h3>
+    <p>Get the best new AI tools, tips, and earning opportunities delivered to your inbox weekly. No spam, unsubscribe anytime.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Enter your email address" id="newsletter-email">
+      <button onclick="handleNewsletter()">Subscribe Free</button>
+    </div>
+    <div class="newsletter-success" id="newsletter-success">✅ You're subscribed! Check your inbox for a welcome email.</div>
+    <p style="font-size:11px;color:var(--muted);margin-top:12px;margin-bottom:0">By subscribing you agree to our <a href="#" onclick="openModal('privacy-modal')" style="color:var(--accent)">Privacy Policy</a>. We respect your data.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="logo">Tool<span>Verse</span></span>
+    <p class="footer-desc">Your curated hub for AI tools, web hosting reviews, and online courses. Work smarter and earn more online.</p>
+  </div>
+  <div class="footer-col">
+    <h4>AI Tools</h4>
+    <a href="#ai-tools">AI Writing Tools</a>
+    <a href="#ai-tools">AI Image Tools</a>
+    <a href="#ai-tools">AI Video Tools</a>
+    <a href="#ai-tools">AI Chatbots</a>
+    <a href="#ai-tools">AI SEO Tools</a>
+  </div>
+  <div class="footer-col">
+    <h4>Resources</h4>
+    <a href="#hosting">Web Hosting</a>
+    <a href="#courses">Online Courses</a>
+    <a href="#newsletter">Newsletter</a>
+    <a onclick="openModal('blog-modal')">Blog</a>
+    <a onclick="openModal('submit-modal')">Submit a Tool</a>
+  </div>
+  <div class="footer-col">
+    <h4>Company</h4>
+    <a onclick="openModal('about-modal')">About Us</a>
+    <a onclick="openModal('contact-modal')">Contact</a>
+    <a onclick="openModal('privacy-modal')">Privacy Policy</a>
+    <a onclick="openModal('terms-modal')">Terms & Conditions</a>
+    <a onclick="openModal('affiliate-modal')">Affiliate Disclosure</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  © 2026 ToolVerse. All rights reserved. &nbsp;|&nbsp;
+  <a onclick="openModal('affiliate-modal')">Affiliate Disclosure</a> &nbsp;|&nbsp;
+  <a onclick="openModal('privacy-modal')">Privacy Policy</a> &nbsp;|&nbsp;
+  <a onclick="openModal('terms-modal')">Terms & Conditions</a>
+  <br><br>
+  Some links on this site are affiliate links. We may earn a commission if you make a purchase — at no extra cost to you. We only recommend tools we genuinely believe in.
+</div>
+
+<!-- ===================== MODALS ===================== -->
+
+<!-- ABOUT US -->
+<div class="modal-overlay" id="about-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('about-modal')">✕</button>
+    <h2>About ToolVerse</h2>
+    <div class="modal-date">Last updated: January 2026</div>
+    <p>ToolVerse is an independent AI tools directory built to help individuals, students, creators, and small businesses discover the best AI tools, web hosting providers, and online courses available today.</p>
+    <h3>Our Mission</h3>
+    <p>We cut through the noise. The AI space moves fast — new tools launch daily and it's hard to know what's genuinely useful. Our goal is to curate only tools that deliver real value, clearly label what's free vs. paid, and help you make informed decisions without wasting your time or money.</p>
+    <h3>Who We Are</h3>
+    <p>ToolVerse is run by a small team of designers, developers, and digital creators who use AI tools every day. We test and review tools personally before listing them. We are not affiliated with any single company and aim to give balanced, honest coverage across the industry.</p>
+    <h3>How We Make Money</h3>
+    <p>Some links on ToolVerse are affiliate links, meaning we earn a small commission if you sign up or purchase through our link — at no extra cost to you. This is how we keep the directory free. We always disclose affiliate relationships clearly. See our full <a href="#" onclick="closeModal('about-modal');openModal('affiliate-modal')">Affiliate Disclosure</a>.</p>
+    <h3>Contact Us</h3>
+    <p>For questions, tool submissions, or partnership inquiries, use the <a href="#" onclick="closeModal('about-modal');openModal('contact-modal')">Contact form</a>.</p>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="modal-overlay" id="contact-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('contact-modal')">✕</button>
+    <h2>Contact Us</h2>
+    <div class="modal-date">We typically respond within 2–3 business days.</div>
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" placeholder="e.g. Alex Johnson">
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" placeholder="you@example.com">
+    </div>
+    <div class="form-group">
+      <label>Subject</label>
+      <select>
+        <option>General Inquiry</option>
+        <option>Submit a Tool</option>
+        <option>Advertise / Partnership</option>
+        <option>Report Incorrect Info</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea placeholder="Tell us what's on your mind..."></textarea>
+    </div>
+    <button class="form-submit" onclick="handleContactSubmit()">Send Message</button>
+    <p class="form-note">Your information is kept private. See our <a href="#" onclick="closeModal('contact-modal');openModal('privacy-modal')">Privacy Policy</a>.</p>
+  </div>
+</div>
+
+<!-- SUBMIT A TOOL — Upgraded with GitHub + Deploy -->
+<div class="modal-overlay" id="submit-modal">
+  <div class="modal" style="max-width:820px">
+    <button class="modal-close" onclick="closeModal('submit-modal')">✕</button>
+    <h2>🚀 List Your AI Tool</h2>
+    <div class="modal-date">Get your tool in front of thousands of AI enthusiasts. You keep 100% of your affiliate earnings.</div>
+
+    <!-- PRICING TIERS — 3 plans -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:24px 0 24px;">
+
+      <!-- Standard -->
+      <div class="plan-card selected" id="plan-standard" onclick="selectPlan('standard')">
+        <div class="plan-check" id="check-standard">✓</div>
+        <div class="plan-name">Standard</div>
+        <div class="plan-price">$15 <span>one-time</span></div>
+        <ul class="plan-features">
+          <li>✔ Permanent directory listing</li>
+          <li>✔ Your affiliate link displayed</li>
+          <li>✔ All category filters</li>
+          <li>✔ Description + rating badge</li>
+          <li style="color:#6b82a8">✖ No featured placement</li>
+          <li style="color:#6b82a8">✖ No deploy guidance</li>
+        </ul>
+        <div class="plan-earn">💰 You keep 100% affiliate commissions</div>
+      </div>
+
+      <!-- GitHub + Deploy -->
+      <div class="plan-card" id="plan-github" onclick="selectPlan('github')" style="position:relative">
+        <div style="position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#10b981,#00e5ff);color:#000;font-size:10px;font-weight:800;padding:3px 12px;border-radius:20px;letter-spacing:1px;white-space:nowrap">🐙 FOR DEVS</div>
+        <div class="plan-check" id="check-github" style="display:none">✓</div>
+        <div class="plan-name">Dev + Deploy</div>
+        <div class="plan-price">$29 <span>one-time</span></div>
+        <ul class="plan-features">
+          <li>✔ Everything in Standard</li>
+          <li>✔ <strong style="color:#10b981">GitHub repo linked</strong></li>
+          <li>✔ <strong style="color:#10b981">Deploy guide included</strong></li>
+          <li>✔ Vercel / Netlify buttons</li>
+          <li>✔ Live demo link on card</li>
+          <li style="color:#6b82a8">✖ No featured placement</li>
+        </ul>
+        <div class="plan-earn">💰 Affiliate commissions + dev credibility</div>
+      </div>
+
+      <!-- Featured -->
+      <div class="plan-card" id="plan-featured" onclick="selectPlan('featured')" style="position:relative">
+        <div style="position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#00e5ff,#7c3aed);color:#000;font-size:10px;font-weight:800;padding:3px 12px;border-radius:20px;letter-spacing:1px;white-space:nowrap">⚡ BEST VALUE</div>
+        <div class="plan-check" id="check-featured" style="display:none">✓</div>
+        <div class="plan-name">Featured</div>
+        <div class="plan-price">$79 <span>/month</span></div>
+        <ul class="plan-features">
+          <li>✔ Everything in Dev + Deploy</li>
+          <li>✔ <strong style="color:#00e5ff">Top placement</strong> in directory</li>
+          <li>✔ <strong style="color:#00e5ff">FEATURED badge</strong> on card</li>
+          <li>✔ <strong style="color:#00e5ff">Newsletter mention</strong></li>
+          <li>✔ "Tool of the Week" banner</li>
+          <li>✔ Priority review (24 hrs)</li>
+        </ul>
+        <div class="plan-earn">💰 Max exposure + affiliate + deploy</div>
+      </div>
+
+    </div>
+
+    <!-- HOW YOU EARN -->
+    <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:12px;padding:16px 20px;margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:#10b981;margin-bottom:8px">💡 How You Earn From Your Listing</div>
+      <div style="font-size:12.5px;color:#6b82a8;line-height:1.8">
+        Add your affiliate link below. Every visitor who clicks and signs up for your tool — <strong style="color:#e8f0fe">you earn the commission directly</strong>. We only charge the listing fee. You keep 100% of your affiliate program payouts.
+      </div>
+    </div>
+
+    <!-- GITHUB DEPLOY SECTION — shown only for github/featured plans -->
+    <div id="github-section" style="display:none;background:rgba(16,185,129,0.04);border:1px solid rgba(16,185,129,0.2);border-radius:12px;padding:20px;margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:#10b981;margin-bottom:4px">🐙 GitHub Repository</div>
+      <div style="font-size:12px;color:#6b82a8;margin-bottom:14px">Paste your public GitHub repo URL. We'll add a repo link and deploy buttons to your listing card.</div>
+      <div class="form-group" style="margin-bottom:12px">
+        <label>GitHub Repo URL</label>
+        <input type="url" id="sub-github" placeholder="https://github.com/yourusername/your-tool">
+      </div>
+      <div style="font-size:12px;font-weight:600;color:#6b82a8;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;">Deploy in 1 click — free hosting</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a id="vercel-deploy-btn" href="https://vercel.com/new" target="_blank" rel="noopener noreferrer"
+          style="display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:8px;background:#000;border:1px solid #333;color:#fff;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s;"
+          onmouseover="this.style.borderColor='#00e5ff'" onmouseout="this.style.borderColor='#333'">
+          <span style="font-size:16px">▲</span> Deploy on Vercel (Free)
+        </a>
+        <a id="netlify-deploy-btn" href="https://app.netlify.com/start" target="_blank" rel="noopener noreferrer"
+          style="display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:8px;background:rgba(0,173,181,0.1);border:1px solid rgba(0,173,181,0.3);color:#00adb5;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s;"
+          onmouseover="this.style.background='rgba(0,173,181,0.2)'" onmouseout="this.style.background='rgba(0,173,181,0.1)'">
+          <span style="font-size:16px">⬡</span> Deploy on Netlify (Free)
+        </a>
+        <a id="ghpages-deploy-btn" href="https://pages.github.com" target="_blank" rel="noopener noreferrer"
+          style="display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:8px;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.3);color:#a78bfa;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s;"
+          onmouseover="this.style.background='rgba(124,58,237,0.2)'" onmouseout="this.style.background='rgba(124,58,237,0.1)'">
+          <span style="font-size:16px">🐙</span> GitHub Pages (Free)
+        </a>
+      </div>
+      <div style="font-size:11px;color:#6b82a8;margin-top:10px">💡 Once deployed, paste the live URL in the "Tool Website URL" field above. Vercel & Netlify are free forever for static/frontend tools.</div>
+    </div>
+
+    <!-- FORM FIELDS -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div class="form-group">
+        <label>Tool Name *</label>
+        <input type="text" id="sub-name" placeholder="e.g. My AI Writing Tool">
+      </div>
+      <div class="form-group">
+        <label>Tool Website URL *</label>
+        <input type="url" id="sub-url" placeholder="https://mytool.com">
+      </div>
+      <div class="form-group">
+        <label>Your Affiliate / Referral Link</label>
+        <input type="url" id="sub-affiliate" placeholder="https://mytool.com?ref=YOUR_ID">
+      </div>
+      <div class="form-group">
+        <label>Category *</label>
+        <select id="sub-cat">
+          <option>AI Writing</option>
+          <option>AI Image Generation</option>
+          <option>AI Video</option>
+          <option>AI Chatbot</option>
+          <option>AI Coding</option>
+          <option>AI SEO</option>
+          <option>AI Productivity</option>
+          <option>AI Audio</option>
+          <option>AI Research</option>
+          <option>AI Study / Education</option>
+          <option>AI Design</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Pricing Model *</label>
+        <select id="sub-pricing">
+          <option>Free</option>
+          <option>Freemium</option>
+          <option>Paid</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Your Email *</label>
+        <input type="email" id="sub-email" placeholder="you@example.com">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Tool Description * (max 150 characters)</label>
+      <input type="text" id="sub-desc" placeholder="What does your tool do? Who is it for?" maxlength="150">
+    </div>
+
+    <button class="form-submit" id="submit-pay-btn" onclick="handleToolSubmit()" style="margin-top:8px">
+      Pay $15 &amp; Submit Standard Listing →
+    </button>
+    <p class="form-note" style="margin-top:10px">
+      🔒 Payment via Stripe &nbsp;·&nbsp; Review within 3–5 days (Featured: 24 hrs) &nbsp;·&nbsp; Full refund if not listed
+    </p>
+  </div>
+</div>
+
+<style>
+.plan-card {
+  border: 1px solid #1e2d45; border-radius: 14px; padding: 20px;
+  cursor: pointer; transition: all 0.25s; position: relative; background: #151d2e;
+}
+.plan-card:hover { border-color: rgba(0,229,255,0.4); transform: translateY(-2px); }
+.plan-card.selected { border-color: var(--accent); background: rgba(0,229,255,0.06); box-shadow: 0 0 0 2px rgba(0,229,255,0.2); }
+.plan-check {
+  position: absolute; top: 14px; right: 14px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--accent); color: #000; font-size: 12px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.plan-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+.plan-price { font-size: 26px; font-weight: 800; color: var(--accent); margin-bottom: 14px; }
+.plan-price span { font-size: 13px; color: #6b82a8; font-weight: 400; }
+.plan-features { list-style: none; padding: 0; margin-bottom: 14px; }
+.plan-features li { font-size: 12px; color: #6b82a8; padding: 3px 0; line-height: 1.6; }
+.plan-earn { font-size: 11px; font-weight: 600; color: #10b981; background: rgba(16,185,129,0.08); border-radius: 6px; padding: 6px 10px; }
+</style>
+
+<!-- BLOG -->
+<div class="modal-overlay" id="blog-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('blog-modal')">✕</button>
+    <h2>📝 ToolVerse Blog</h2>
+    <div class="modal-date">Guides, comparisons, and tips on AI tools and earning online.</div>
+    <p style="color:var(--accent);font-weight:600;margin-bottom:8px">Coming Soon</p>
+    <p>Our blog is launching shortly with in-depth guides and tool comparisons. Subscribe to be notified when we publish our first articles.</p>
+    <h3>Planned Articles</h3>
+    <ul>
+      <li>Best AI Tools for UI/UX Designers in 2026</li>
+      <li>ChatGPT vs Claude vs Gemini — Full Comparison</li>
+      <li>Best Free AI Tools for Students</li>
+      <li>How to Make Money with AI Affiliate Marketing</li>
+      <li>Best AI Tools for Coding Beginners</li>
+      <li>Top AI Image Generators Compared</li>
+    </ul>
+    <div style="margin-top:24px">
+      <button class="form-submit" onclick="closeModal('blog-modal');document.getElementById('newsletter').scrollIntoView({behavior:'smooth'})">Notify Me When Live →</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACY POLICY -->
+<div class="modal-overlay" id="privacy-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('privacy-modal')">✕</button>
+    <h2>Privacy Policy</h2>
+    <div class="modal-date">Effective date: January 1, 2026 &nbsp;|&nbsp; Last updated: May 2026</div>
+    <p>This Privacy Policy describes how ToolVerse ("we", "us", or "our") collects, uses, and shares information about you when you use our website.</p>
+    <h3>Information We Collect</h3>
+    <p><strong>Information you provide:</strong> When you subscribe to our newsletter, submit a tool listing, or contact us, we collect your name, email address, tool details, and any other information you voluntarily provide.</p>
+    <p><strong>Payment information:</strong> When you purchase a listing (Standard or Featured), payment is processed securely by <strong>Stripe</strong>. ToolVerse does not store your card number or payment details. Stripe's privacy policy applies to all payment transactions: <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">stripe.com/privacy</a>.</p>
+    <p><strong>Automatically collected information:</strong> We may collect standard log data such as your IP address, browser type, pages visited, and time spent on pages. This is used for analytics purposes only.</p>
+    <h3>AI Chatbot</h3>
+    <p>Our site includes an AI-powered chatbot. Conversations you have with the chatbot may be processed by Anthropic's Claude API. We do not store chat transcripts. The chatbot may recommend tools using affiliate links — this is always disclosed in the chat window.</p>
+    <h3>How We Use Your Information</h3>
+    <ul>
+      <li>To send you our newsletter (only if you subscribed)</li>
+      <li>To process paid tool listing submissions</li>
+      <li>To respond to your contact form submissions</li>
+      <li>To improve our website and content</li>
+      <li>To analyze site traffic via third-party analytics (e.g. Google Analytics)</li>
+    </ul>
+    <h3>Cookies</h3>
+    <p>Our website may use cookies for analytics and functionality. You can disable cookies in your browser settings. Stripe may also set cookies for fraud prevention during payment processing.</p>
+    <h3>Third-Party Links</h3>
+    <p>Our site contains links to third-party websites, including affiliate and sponsored links. We are not responsible for the privacy practices of those sites. Links marked with "sponsored" or listed in our Affiliate Disclosure are commercial relationships.</p>
+    <h3>Data Retention</h3>
+    <p>We retain email addresses only for as long as you remain subscribed to our newsletter. Payment records are retained as required by law (typically 7 years). You may request deletion of your personal data at any time.</p>
+    <h3>Your Rights</h3>
+    <p>You may request access to, correction of, or deletion of any personal data we hold about you by contacting us via our <a href="#" onclick="closeModal('privacy-modal');openModal('contact-modal')">Contact form</a>. If you are in the EU/EEA, you have additional rights under GDPR.</p>
+    <h3>Contact</h3>
+    <p>If you have any questions about this Privacy Policy, please contact us using the <a href="#" onclick="closeModal('privacy-modal');openModal('contact-modal')">Contact form</a>.</p>
+  </div>
+</div>
+
+<!-- TERMS & CONDITIONS -->
+<div class="modal-overlay" id="terms-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('terms-modal')">✕</button>
+    <h2>Terms & Conditions</h2>
+    <div class="modal-date">Effective date: January 1, 2026 &nbsp;|&nbsp; Last updated: May 2026</div>
+    <p>Please read these Terms and Conditions carefully before using ToolVerse. By accessing or using our website, you agree to be bound by these terms.</p>
+    <h3>Use of the Site</h3>
+    <p>ToolVerse is an AI tools directory. You may use this site for personal and commercial research and discovery purposes. You agree not to misuse the site, scrape content without permission, attempt to gain unauthorized access, or use it in any way that violates applicable law.</p>
+    <h3>Paid Tool Listings</h3>
+    <p><strong>Standard Listing ($15 one-time):</strong> Grants a permanent listing in the ToolVerse directory, subject to review and approval. <strong>Featured Listing ($49/month):</strong> Grants priority placement, a Featured badge, and newsletter inclusion, billed monthly and cancellable at any time.</p>
+    <p><strong>Refund Policy:</strong> If your submitted tool is rejected after payment, you are entitled to a full refund within 14 days of payment. If your tool is accepted and listed, no refund is available. To request a refund, contact us via the Contact form with your payment receipt.</p>
+    <p><strong>Listing Requirements:</strong> Submitted tools must be real, functional, and accurately described. ToolVerse reserves the right to reject or remove any listing that is fraudulent, misleading, illegal, or violates these Terms without refund.</p>
+    <h3>User-Submitted Content</h3>
+    <p>By submitting a tool listing, you confirm that: (a) you have the right to submit and promote the tool; (b) the information provided is accurate; (c) the tool does not violate any laws or third-party rights. ToolVerse is not responsible for the quality, safety, or legality of any user-submitted tool. Users interact with listed tools entirely at their own risk.</p>
+    <h3>AI Chatbot Disclaimer</h3>
+    <p>Our site includes an AI-powered chatbot that provides tool recommendations. These recommendations are generated by artificial intelligence and may include affiliate links. They should not be considered professional advice. Always verify tool suitability for your own needs before purchasing.</p>
+    <h3>Accuracy of Information</h3>
+    <p>We strive to keep all tool listings, pricing information, and affiliate details accurate. However, information may change without notice. Always verify details directly with the tool provider before making a purchase.</p>
+    <h3>Affiliate & Sponsored Links</h3>
+    <p>Some links on this site are affiliate or sponsored links, marked with rel="sponsored". See our <a href="#" onclick="closeModal('terms-modal');openModal('affiliate-modal')">Affiliate Disclosure</a> for full details. Our editorial opinions are not influenced by affiliate or paid relationships.</p>
+    <h3>Third-Party Sites</h3>
+    <p>ToolVerse links to third-party websites and services. We are not responsible for the content, terms, security, or practices of any third-party site. Use third-party services at your own risk.</p>
+    <h3>Intellectual Property</h3>
+    <p>All original content on ToolVerse, including text, design, and code, is the property of ToolVerse. Tool names and logos belong to their respective owners. We claim no ownership over third-party trademarks or brands mentioned on this site.</p>
+    <h3>Limitation of Liability</h3>
+    <p>ToolVerse is provided "as is" without warranties of any kind. We are not liable for any direct, indirect, or consequential damages arising from your use of this site, any tools listed on it, AI chatbot recommendations, or any paid listing transactions beyond the amount paid.</p>
+    <h3>Changes to Terms</h3>
+    <p>We reserve the right to update these Terms at any time. Continued use of the site after changes are posted constitutes your acceptance of the revised Terms.</p>
+    <h3>Contact</h3>
+    <p>For questions about these Terms, please use our <a href="#" onclick="closeModal('terms-modal');openModal('contact-modal')">Contact form</a>.</p>
+  </div>
+</div>
+
+<!-- AFFILIATE DISCLOSURE -->
+<div class="modal-overlay" id="affiliate-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('affiliate-modal')">✕</button>
+    <h2>Affiliate Disclosure</h2>
+    <div class="modal-date">Effective date: January 1, 2026 &nbsp;|&nbsp; Last updated: May 2026</div>
+    <p>ToolVerse participates in affiliate marketing programs. Some links on this site are affiliate or sponsored links — if you click one and make a purchase or sign up, we may receive a commission from the company at <strong>no extra cost to you</strong>. All such links are marked with <code>rel="sponsored"</code> in the page code, in compliance with Google's webmaster guidelines.</p>
+    <h3>AI Chatbot Recommendations</h3>
+    <p>Our AI chatbot assistant may recommend tools using affiliate links. Every chatbot response that may include affiliate links is labeled with a disclosure notice at the bottom of the chat window. The AI is instructed to recommend tools based on relevance to your question — not purely on commission rates.</p>
+    <h3>Paid Listings</h3>
+    <p>Tool owners may pay to have their tool listed on ToolVerse (Standard: $15 one-time; Dev + Deploy: $29 one-time; Featured: $79/month). Paid listings are not editorially endorsed — we verify they are real, functional tools but listing fees do not influence our ratings or descriptions. Featured tools are visually distinguished on the site.</p>
+    <h3>Which Links Are Affiliate Links?</h3>
+    <p>Affiliate links appear throughout the site — in tool cards, hosting recommendations, course listings, and AI chatbot responses. In each section, a note informs visitors that links may be affiliate links. When in doubt, assume any outbound link may earn us a commission.</p>
+    <h3>Our Editorial Standards</h3>
+    <p>Affiliate and paid relationships do not determine which tools we list or how we describe them. We would not list a harmful or low-quality tool regardless of commission. Our goal is to help users find genuinely useful AI tools.</p>
+    <h3>FTC Compliance</h3>
+    <p>In accordance with FTC guidelines on endorsements and testimonials, ToolVerse discloses all material connections clearly and prominently. This disclosure applies site-wide including AI chatbot recommendations.</p>
+    <h3>Third-Party Programs We May Participate In</h3>
+    <ul>
+      <li>Hostinger Affiliate Program</li>
+      <li>Bluehost Affiliate Program</li>
+      <li>Shopify Affiliate Program</li>
+      <li>Jasper AI Affiliate Program</li>
+      <li>Udemy Affiliate Program</li>
+      <li>Coursera Affiliate Program</li>
+      <li>Skillshare Affiliate Program</li>
+      <li>MasterClass Affiliate Program</li>
+      <li>Tool owner affiliate programs (via paid listings)</li>
+      <li>Other AI tool and software affiliate programs</li>
+    </ul>
+    <h3>Questions?</h3>
+    <p>If you have any questions about our affiliate relationships, please reach out via our <a href="#" onclick="closeModal('affiliate-modal');openModal('contact-modal')">Contact form</a>.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     TOOLVERSE AI ASSISTANT — Affiliate Chatbot
+     How it earns money:
+     - Uses Claude API to answer user questions
+     - System prompt tells Claude about all your tools + affiliate links
+     - When a user asks "best writing tool?" Claude naturally recommends
+       Jasper AI with your affiliate link embedded in the response
+     - User clicks → goes to Jasper → you earn commission
+     - Zero ads. Feels like a helpful assistant, not a sales pitch.
+============================================================ -->
+
+<!-- Chat bubble button -->
+<button id="chat-bubble" onclick="toggleChat()" title="Ask ToolVerse AI">
+  <span id="bubble-icon">💬</span>
+  <span id="bubble-label">Ask AI</span>
+  <span id="chat-notif">1</span>
+</button>
+
+<!-- Chat window -->
+<div id="chat-window">
+  <div id="chat-header">
+    <div id="chat-header-left">
+      <div id="chat-avatar">TV</div>
+      <div>
+        <div id="chat-title">ToolVerse AI</div>
+        <div id="chat-status"><span id="status-dot"></span>Online — Ask me anything</div>
+      </div>
+    </div>
+    <button id="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+
+  <div id="chat-messages">
+    <div class="msg bot-msg">
+      <div class="msg-bubble">
+        👋 Hi! I'm the ToolVerse AI assistant.<br><br>
+        Ask me anything like:<br>
+        • <span class="suggestion" onclick="sendSuggestion(this)">Best AI writing tool?</span><br>
+        • <span class="suggestion" onclick="sendSuggestion(this)">Free AI tools for students?</span><br>
+        • <span class="suggestion" onclick="sendSuggestion(this)">How do I make money with AI?</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="chat-input-area">
+    <input type="text" id="chat-input" placeholder="Ask about AI tools..." onkeydown="if(event.key==='Enter') sendMessage()" maxlength="300"/>
+    <button id="chat-send" onclick="sendMessage()">➤</button>
+  </div>
+  <div id="chat-footer">🤖 AI-generated responses may include affiliate links · <a href="#" onclick="openModal('affiliate-modal')">Disclosure</a></div>
+</div>
+
+<style>
+/* ---- CHAT BUBBLE ---- */
+#chat-bubble {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  display: flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, #00e5ff, #7c3aed);
+  border: none; border-radius: 50px;
+  padding: 14px 22px; cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0,229,255,0.35);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 700; color: #000;
+  transition: all 0.3s; animation: bubblePop 0.5s 1s ease both;
+}
+#chat-bubble:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 12px 40px rgba(0,229,255,0.5); }
+#chat-notif {
+  position: absolute; top: -6px; right: -6px;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #f59e0b; color: #000; font-size: 11px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  animation: pulse 2s infinite;
+}
+@keyframes bubblePop {
+  from { opacity:0; transform:scale(0.5) translateY(20px); }
+  to { opacity:1; transform:scale(1) translateY(0); }
+}
+
+/* ---- CHAT WINDOW ---- */
+#chat-window {
+  position: fixed; bottom: 96px; right: 28px; z-index: 998;
+  width: 370px; max-height: 560px;
+  background: #0f1520; border: 1px solid #1e2d45;
+  border-radius: 20px; display: none; flex-direction: column;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  animation: chatSlideUp 0.3s ease;
+  overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+}
+#chat-window.open { display: flex; }
+@keyframes chatSlideUp {
+  from { opacity:0; transform:translateY(20px) scale(0.97); }
+  to { opacity:1; transform:translateY(0) scale(1); }
+}
+
+/* ---- HEADER ---- */
+#chat-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, rgba(0,229,255,0.1), rgba(124,58,237,0.1));
+  border-bottom: 1px solid #1e2d45;
+}
+#chat-header-left { display: flex; align-items: center; gap: 12px; }
+#chat-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, #00e5ff, #7c3aed);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; color: #000;
+  flex-shrink: 0;
+}
+#chat-title { font-size: 15px; font-weight: 700; color: #e8f0fe; font-family: 'Syne', sans-serif; }
+#chat-status { font-size: 11px; color: #6b82a8; display: flex; align-items: center; gap: 5px; }
+#status-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #10b981;
+  display: inline-block; animation: pulse 2s infinite;
+}
+#chat-close {
+  background: none; border: none; color: #6b82a8;
+  font-size: 16px; cursor: pointer; padding: 4px 8px;
+  border-radius: 6px; transition: all 0.2s;
+}
+#chat-close:hover { color: #e8f0fe; background: rgba(255,255,255,0.05); }
+
+/* ---- MESSAGES ---- */
+#chat-messages {
+  flex: 1; overflow-y: auto; padding: 16px;
+  display: flex; flex-direction: column; gap: 12px;
+  scrollbar-width: thin; scrollbar-color: #1e2d45 transparent;
+}
+.msg { display: flex; }
+.bot-msg { justify-content: flex-start; }
+.user-msg { justify-content: flex-end; }
+.msg-bubble {
+  max-width: 88%; padding: 12px 15px;
+  border-radius: 16px; font-size: 13.5px; line-height: 1.6;
+  word-break: break-word;
+}
+.bot-msg .msg-bubble {
+  background: #151d2e; border: 1px solid #1e2d45;
+  color: #e8f0fe; border-bottom-left-radius: 4px;
+}
+.user-msg .msg-bubble {
+  background: linear-gradient(135deg, rgba(0,229,255,0.15), rgba(124,58,237,0.15));
+  border: 1px solid rgba(0,229,255,0.2);
+  color: #e8f0fe; border-bottom-right-radius: 4px;
+}
+.msg-bubble a {
+  color: #00e5ff; font-weight: 600; text-decoration: none;
+  border-bottom: 1px solid rgba(0,229,255,0.3);
+}
+.msg-bubble a:hover { border-color: #00e5ff; }
+.suggestion {
+  color: #00e5ff; cursor: pointer; font-weight: 500;
+  border-bottom: 1px dashed rgba(0,229,255,0.4);
+  transition: color 0.2s;
+}
+.suggestion:hover { color: #7c3aed; }
+
+/* typing indicator */
+.typing-bubble { display: flex; gap: 5px; align-items: center; padding: 14px 18px !important; }
+.typing-bubble span {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #6b82a8; animation: typingBounce 1.2s infinite;
+}
+.typing-bubble span:nth-child(2) { animation-delay: 0.2s; }
+.typing-bubble span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingBounce {
+  0%,60%,100% { transform:translateY(0); opacity:0.4; }
+  30% { transform:translateY(-6px); opacity:1; }
+}
+
+/* ---- INPUT ---- */
+#chat-input-area {
+  display: flex; gap: 8px; padding: 12px 14px;
+  border-top: 1px solid #1e2d45;
+  background: #0f1520;
+}
+#chat-input {
+  flex: 1; background: #151d2e; border: 1px solid #1e2d45;
+  border-radius: 10px; color: #e8f0fe;
+  padding: 10px 14px; font-size: 13px;
+  font-family: 'DM Sans', sans-serif; outline: none;
+  transition: border-color 0.2s;
+}
+#chat-input:focus { border-color: #00e5ff; }
+#chat-input::placeholder { color: #6b82a8; }
+#chat-send {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: linear-gradient(135deg, #00e5ff, #7c3aed);
+  border: none; color: #000; font-size: 15px;
+  cursor: pointer; transition: all 0.2s; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+#chat-send:hover { opacity: 0.85; transform: scale(1.05); }
+#chat-send:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+#chat-footer {
+  text-align: center; font-size: 10px; color: #6b82a8;
+  padding: 6px; background: #080c14;
+  border-top: 1px solid #1e2d45;
+}
+#chat-footer a { color: #6b82a8; text-decoration: underline; }
+
+@media (max-width: 480px) {
+  #chat-window { width: calc(100vw - 32px); right: 16px; bottom: 90px; }
+  #chat-bubble { right: 16px; bottom: 16px; }
+}
+</style>
+
+<script>
+// ================================================================
+// HOW THE MONEY WORKS — explained in plain English:
+//
+// 1. User opens the chat and asks "what's the best AI writing tool?"
+//
+// 2. Their message goes to the Claude API (claude-sonnet-4-20250514)
+//
+// 3. The SYSTEM PROMPT is a secret instruction we send with every
+//    message. The user never sees it. It tells Claude:
+//    - You are ToolVerse's assistant
+//    - Here are all our tools and their affiliate links
+//    - When you recommend a tool, link to it
+//
+// 4. Claude answers naturally: "For writing, Jasper AI is excellent.
+//    [Try Jasper free →](https://jasper.ai?fpr=YOUR_ID)"
+//
+// 5. The user clicks that link → lands on Jasper → signs up
+//    → Jasper pays YOU a commission (usually $20–$80+)
+//
+// 6. The user had a great experience. No ads. Just helpful advice.
+//    That's why it converts better than banner ads.
+// ================================================================
+
+const SYSTEM_PROMPT = `You are the friendly AI assistant for ToolVerse — an AI tools directory website.
+Your job is to help users find the best AI tools for their needs and naturally recommend tools from our directory with their links.
+
+IMPORTANT RULES:
+- Keep answers short (3-5 sentences max) and conversational
+- Always recommend specific tools with clickable markdown links
+- Mention if a tool is free, freemium, or paid
+- Never say you are Claude or made by Anthropic — you are "ToolVerse AI"
+- Sound helpful and genuine, never salesy
+
+OUR TOOLS & AFFILIATE LINKS (use these exact links when recommending):
+• ChatGPT (Free/Paid) — Best all-round AI chatbot → https://chat.openai.com
+• Jasper AI (Paid) — Best for marketing & blog writing → https://www.jasper.ai (AFFILIATE - recommend for writing tasks)
+• Grammarly (Freemium) — Best for grammar & writing improvement → https://www.grammarly.com
+• Midjourney (Paid) — Best AI image generator → https://www.midjourney.com
+• Runway ML (Freemium) — Best AI video generator → https://runwayml.com
+• Surfer SEO (Paid) — Best for SEO content → https://surferseo.com (AFFILIATE)
+• GitHub Copilot (Freemium) — Best AI coding assistant → https://github.com/features/copilot
+• Cursor (Freemium) — Best AI code editor → https://cursor.sh
+• Bolt.new (Freemium) — Best for building apps fast → https://bolt.new
+• Perplexity AI (Freemium) — Best AI search engine → https://www.perplexity.ai
+• NotebookLM (Free) — Best for studying & notes → https://notebooklm.google.com
+• Khanmigo (Free) — Best free AI tutor → https://www.khanacademy.org/khan-labs
+• Otter.ai (Freemium) — Best for meeting transcripts → https://otter.ai
+• HeyGen (Freemium) — Best for AI avatar videos → https://www.heygen.com
+• Ideogram (Freemium) — Best AI for text-in-images → https://ideogram.ai
+
+When answering about making money online, learning, or productivity — always tie in a relevant tool recommendation with its link.`;
+
+let chatHistory = [];
+let isTyping = false;
+
+function toggleChat() {
+  const win = document.getElementById('chat-window');
+  const notif = document.getElementById('chat-notif');
+  win.classList.toggle('open');
+  if (win.classList.contains('open')) {
+    notif.style.display = 'none';
+    setTimeout(() => document.getElementById('chat-input').focus(), 300);
+  }
+}
+
+function sendSuggestion(el) {
+  document.getElementById('chat-input').value = el.textContent;
+  sendMessage();
+}
+
+function sendMessage() {
+  if (isTyping) return;
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  appendMessage(text, 'user');
+  chatHistory.push({ role: 'user', content: text });
+  showTyping();
+
+  fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      system: SYSTEM_PROMPT,
+      messages: chatHistory
+    })
+  })
+  .then(r => r.json())
+  .then(data => {
+    removeTyping();
+    const reply = data.content?.[0]?.text || "Sorry, I couldn't get a response. Please try again!";
+    chatHistory.push({ role: 'assistant', content: reply });
+    appendMessage(reply, 'bot');
+  })
+  .catch(() => {
+    removeTyping();
+    appendMessage("Hmm, something went wrong. Please try again in a moment!", 'bot');
+  });
+}
+
+function appendMessage(text, role) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = `msg ${role === 'bot' ? 'bot-msg' : 'user-msg'}`;
+  const bubble = document.createElement('div');
+  bubble.className = 'msg-bubble';
+  // Convert markdown links [text](url) to real <a> tags
+  bubble.innerHTML = text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer nofollow sponsored">$1</a>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
+  div.appendChild(bubble);
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping() {
+  isTyping = true;
+  document.getElementById('chat-send').disabled = true;
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg bot-msg'; div.id = 'typing-indicator';
+  div.innerHTML = '<div class="msg-bubble typing-bubble"><span></span><span></span><span></span></div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeTyping() {
+  isTyping = false;
+  document.getElementById('chat-send').disabled = false;
+  const t = document.getElementById('typing-indicator');
+  if (t) t.remove();
+}
+</script>
+
+<script>
+  // Modal open/close
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Close on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(m => {
+        m.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+
+  // Category filter
+  document.querySelectorAll('.cat-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const cat = pill.dataset.cat;
+      document.querySelectorAll('.tool-card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Search
+  document.getElementById('search-input').addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase();
+    document.querySelectorAll('.tool-card').forEach(card => {
+      const name = card.querySelector('.tool-name').textContent.toLowerCase();
+      const desc = card.querySelector('.tool-desc').textContent.toLowerCase();
+      const cat = card.querySelector('.tool-category').textContent.toLowerCase();
+      card.style.display = (name.includes(query) || desc.includes(query) || cat.includes(query) || query === '') ? '' : 'none';
+    });
+    // Reset category pills when searching
+    if (query !== '') {
+      document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    }
+  });
+
+  // Newsletter
+  function handleNewsletter() {
+    const email = document.getElementById('newsletter-email').value;
+    if (!email || !email.includes('@')) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    document.getElementById('newsletter-success').style.display = 'block';
+    document.getElementById('newsletter-email').value = '';
+  }
+
+  // Contact submit
+  function handleContactSubmit() {
+    alert('Thank you for your message! We\'ll get back to you within 2–3 business days.');
+    closeModal('contact-modal');
+  }
+
+  // Tool submit
+  let selectedPlan = 'standard';
+  function selectPlan(plan) {
+    selectedPlan = plan;
+    ['standard','github','featured'].forEach(p => {
+      const card = document.getElementById('plan-' + p);
+      const check = document.getElementById('check-' + p);
+      if (!card) return;
+      if (p === plan) { card.classList.add('selected'); check.style.display = 'flex'; }
+      else { card.classList.remove('selected'); check.style.display = 'none'; }
+    });
+    const btn = document.getElementById('submit-pay-btn');
+    const githubSection = document.getElementById('github-section');
+    if (plan === 'featured') {
+      btn.textContent = 'Pay $79/month & Submit Featured Listing \u2192';
+      githubSection.style.display = 'block';
+    } else if (plan === 'github') {
+      btn.textContent = 'Pay $29 & Submit Dev + Deploy Listing \u2192';
+      githubSection.style.display = 'block';
+    } else {
+      btn.textContent = 'Pay $15 & Submit Standard Listing \u2192';
+      githubSection.style.display = 'none';
+    }
+    // Update deploy buttons with repo URL if filled
+    updateDeployLinks();
+  }
+
+  function updateDeployLinks() {
+    const repo = document.getElementById('sub-github')?.value?.trim();
+    if (!repo) return;
+    const encoded = encodeURIComponent(repo);
+    const repoPath = repo.replace('https://github.com/', '');
+    const vercelBtn = document.getElementById('vercel-deploy-btn');
+    const netlifyBtn = document.getElementById('netlify-deploy-btn');
+    const ghpagesBtn = document.getElementById('ghpages-deploy-btn');
+    if (vercelBtn) vercelBtn.href = `https://vercel.com/new/clone?repository-url=${encoded}`;
+    if (netlifyBtn) netlifyBtn.href = `https://app.netlify.com/start/deploy?repository=${encoded}`;
+    if (ghpagesBtn) ghpagesBtn.href = `https://github.com/${repoPath}/settings/pages`;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const ghInput = document.getElementById('sub-github');
+    if (ghInput) ghInput.addEventListener('input', updateDeployLinks);
+  });
+
+  function handleToolSubmit() {
+    const name = document.getElementById('sub-name')?.value?.trim();
+    const url = document.getElementById('sub-url')?.value?.trim();
+    const email = document.getElementById('sub-email')?.value?.trim();
+    const desc = document.getElementById('sub-desc')?.value?.trim();
+    const github = document.getElementById('sub-github')?.value?.trim();
+    if (!name || !url || !email || !desc) { alert('Please fill in all required fields.'); return; }
+    if ((selectedPlan === 'github' || selectedPlan === 'featured') && !github) {
+      alert('Please enter your GitHub repository URL for the Dev + Deploy plan.');
+      return;
+    }
+    const prices = { standard: '$15', github: '$29', featured: '$79/month' };
+    const labels = { standard: 'Standard', github: 'Dev + Deploy', featured: 'Featured' };
+    const days = selectedPlan === 'featured' ? '24 hours' : '3-5 days';
+    const deployNote = (selectedPlan === 'github' || selectedPlan === 'featured') && github
+      ? '\n\nGitHub Repo: ' + github + '\nDeploy buttons (Vercel, Netlify, GitHub Pages) will be added to your listing card.'
+      : '';
+    alert('\ud83c\udf89 ' + labels[selectedPlan] + ' listing selected (' + prices[selectedPlan] + ').\n\nIn the live version this connects to Stripe. Once paid, your tool will be reviewed within ' + days + '.\n\nConfirmation will be sent to: ' + email + deployNote);
+    closeModal('submit-modal');
+  }
+
+  // ===== CINEMATIC PROMPT GENERATOR =====
+  let cpgVibe = '', cpgSubject = '', cpgFullPrompt = '';
+
+  document.querySelectorAll('#cpg-vibes .cpg-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const wasActive = chip.classList.contains('cpg-active');
+      document.querySelectorAll('#cpg-vibes .cpg-chip').forEach(c => c.classList.remove('cpg-active'));
+      if (!wasActive) { chip.classList.add('cpg-active'); cpgVibe = chip.dataset.val; }
+      else cpgVibe = '';
+    });
+  });
+  document.querySelectorAll('#cpg-subjects .cpg-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const wasActive = chip.classList.contains('cpg-active');
+      document.querySelectorAll('#cpg-subjects .cpg-chip').forEach(c => c.classList.remove('cpg-active'));
+      if (!wasActive) { chip.classList.add('cpg-active'); cpgSubject = chip.dataset.val; }
+      else cpgSubject = '';
+    });
+  });
+
+  async function cpgGenerate() {
+    const idea = document.getElementById('cpg-idea').value.trim();
+    const btn = document.getElementById('cpg-generate-btn');
+    const result = document.getElementById('cpg-result');
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="cpg-spinner"></span>Generating...';
+    result.classList.remove('cpg-show');
+
+    const userPrompt = `You are a cinematic AI video prompt engineer. Create a professional detailed video generation prompt.
+
+User idea: "${idea || 'not specified'}"
+Vibe: "${cpgVibe || 'not specified'}"
+Subject: "${cpgSubject || 'not specified'}"
+
+Write ONE cinematic prompt. Include: rich scene description, camera movements (low angle, pull back, tracking), lighting, atmosphere, slow motion or depth of field effects.
+
+Format EXACTLY like this (no extra text, no markdown):
+PROMPT: [full cinematic visual prompt]
+AUDIO: [audio description — music, sounds, dialogue]
+TIPS: [2-3 short tips for best results]`;
+
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          messages: [{ role: 'user', content: userPrompt }]
+        })
+      });
+      const data = await response.json();
+      const text = data.content?.[0]?.text || '';
+
+      const promptMatch = text.match(/PROMPT:\s*([\s\S]*?)(?=AUDIO:|$)/);
+      const audioMatch = text.match(/AUDIO:\s*([\s\S]*?)(?=TIPS:|$)/);
+      const tipsMatch = text.match(/TIPS:\s*([\s\S]*?)$/);
+
+      const prompt = promptMatch?.[1]?.trim() || text;
+      const audio = audioMatch?.[1]?.trim() || '';
+      const tips = tipsMatch?.[1]?.trim() || '';
+      cpgFullPrompt = prompt + (audio ? '\n\nAudio: ' + audio : '');
+
+      document.getElementById('cpg-prompt-text').textContent = prompt;
+      document.getElementById('cpg-audio-text').textContent = audio;
+      document.getElementById('cpg-tips-text').textContent = tips;
+      result.classList.add('cpg-show');
+    } catch(e) {
+      document.getElementById('cpg-prompt-text').textContent = 'Error generating prompt. Please try again.';
+      document.getElementById('cpg-audio-text').textContent = '';
+      document.getElementById('cpg-tips-text').textContent = '';
+      result.classList.add('cpg-show');
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '✦ Generate Another Prompt';
+  }
+
+  function cpgCopy() {
+    if (!cpgFullPrompt) return;
+    navigator.clipboard.writeText(cpgFullPrompt).then(() => {
+      const btn = document.querySelector('.cpg-copy-btn');
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => btn.textContent = '📋 Copy Full Prompt', 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
