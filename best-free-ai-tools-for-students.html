@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Free AI Tools for Students in 2026 | ToolVerse Blog</title>
+  <meta name="description" content="Discover the best free AI tools for students in 2026 — from note-taking and essay writing to coding and research. All tools are free or freemium." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Best Free AI Tools for Students in 2026" />
+  <meta property="og:description" content="The ultimate guide to free AI tools every student needs in 2026." />
+  <meta property="og:url" content="https://toolsverseai.netlify.app/blog/best-free-ai-tools-for-students" />
+  <meta property="og:type" content="article" />
+  <link rel="canonical" href="https://toolsverseai.netlify.app/blog/best-free-ai-tools-for-students" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --card: #1e1e1e;
+      --border: #2a2a2a;
+      --accent: #7c5cfc;
+      --accent-light: #a78bfa;
+      --text: #e8e8e8;
+      --muted: #888;
+      --tag-bg: #1a1030;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    a { color: var(--accent-light); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent-light);
+      letter-spacing: -0.5px;
+    }
+    .nav-back {
+      font-size: 0.85rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-back:hover { color: var(--text); text-decoration: none; }
+
+    /* HERO */
+    .hero {
+      max-width: 760px;
+      margin: 60px auto 48px;
+      padding: 0 24px;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--accent-light);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--accent);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.25;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 5px; }
+
+    /* TABLE OF CONTENTS */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 40px 0;
+    }
+    .toc h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .toc ol {
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .toc li { font-size: 0.9rem; }
+
+    /* ARTICLE */
+    article {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    article h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      margin: 48px 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    article h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      margin: 28px 0 8px;
+    }
+    article p { margin-bottom: 16px; color: #ccc; }
+
+    /* TOOL CARD */
+    .tool-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin: 20px 0;
+      transition: border-color 0.2s;
+    }
+    .tool-card:hover { border-color: var(--accent); }
+    .tool-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .tool-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-free { background: #0d2e1a; color: #4ade80; border: 1px solid #166534; }
+    .badge-freemium { background: #1a1a0d; color: #facc15; border: 1px solid #713f12; }
+    .tool-desc { color: #aaa; font-size: 0.9rem; margin-bottom: 12px; }
+    .tool-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tool-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag {
+      font-size: 0.72rem;
+      background: #222;
+      color: var(--muted);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    .tool-link {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      background: #1a1030;
+      border: 1px solid var(--accent);
+      padding: 5px 14px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .tool-link:hover { background: var(--accent); color: #fff; text-decoration: none; }
+
+    /* HIGHLIGHT BOX */
+    .highlight {
+      background: linear-gradient(135deg, #1a1030, #130e25);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 32px 0;
+    }
+    .highlight p { color: #ccc; margin: 0; }
+    .highlight strong { color: var(--accent-light); }
+
+    /* SUMMARY TABLE */
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 0.88rem;
+    }
+    .summary-table th {
+      background: var(--card);
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.5px;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .summary-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: #ccc;
+    }
+    .summary-table tr:hover td { background: var(--card); }
+
+    /* CTA */
+    .cta-box {
+      background: linear-gradient(135deg, #1a1030 0%, #0d0d1a 100%);
+      border: 1px solid var(--accent);
+      border-radius: 16px;
+      padding: 36px 32px;
+      text-align: center;
+      margin: 48px 0 0;
+    }
+    .cta-box h3 { font-size: 1.3rem; color: #fff; margin-bottom: 10px; }
+    .cta-box p { color: #aaa; font-size: 0.9rem; margin-bottom: 20px; }
+    .cta-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
+    .cta-btn:hover { opacity: 0.85; text-decoration: none; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.6rem; }
+      .tool-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-logo">⚡ ToolVerse</span>
+    <a href="https://toolsverseai.netlify.app" class="nav-back">← Back to Directory</a>
+  </nav>
+
+  <div class="hero">
+    <span class="hero-tag">📚 Student Guide</span>
+    <h1>Best Free AI Tools for Students in 2026</h1>
+    <div class="hero-meta">
+      <span>✍️ ToolVerse Team</span>
+      <span>📅 June 2026</span>
+      <span>⏱️ 6 min read</span>
+      <span>🆓 All tools free or freemium</span>
+    </div>
+  </div>
+
+  <article>
+
+    <p>AI has completely changed how students study, write, research, and code. The best part? Most of the powerful tools are completely free. Whether you're preparing for exams, writing essays, or building your first app — there's an AI tool that can save you hours every week.</p>
+
+    <p>Here are the best free AI tools every student should be using in 2026.</p>
+
+    <div class="toc">
+      <h3>📋 Table of Contents</h3>
+      <ol>
+        <li><a href="#research">Research & Study Tools</a></li>
+        <li><a href="#writing">Writing & Essay Tools</a></li>
+        <li><a href="#coding">Coding Tools</a></li>
+        <li><a href="#productivity">Productivity & Notes</a></li>
+        <li><a href="#summary">Quick Summary Table</a></li>
+      </ol>
+    </div>
+
+    <!-- SECTION 1 -->
+    <h2 id="research">1. Research & Study Tools</h2>
+    <p>These tools help you understand concepts faster, find reliable sources, and prepare for exams without drowning in PDFs.</p>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-name">📓 NotebookLM <span class="badge badge-free">Free</span></span>
+      </div>
+      <p class="tool-desc">Google's AI tool that turns your own notes, PDFs, and textbooks into a personal tutor. Upload your lecture slides and ask it anything — it only answers from your uploaded material, so no hallucinations. The Audio Overview feature turns any document into a podcast-style summary. Easily the most powerful free study tool available right now.</p>
+      <div class="tool-footer">
+        <div class="tool-tags">
+          <span class="tag">Study</span><span class="tag">Research</span><span class="tag">PDF</span>
+        </div>
+        <a href="https://notebooklm.google.com" target="_blank" class="tool-link">Try Free →</a>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-name">🔬 Consensus <span class="badge badge-free">Free</span></span>
+      </div>
+      <p class="tool-desc">Search millions of real academic papers and get AI-summarized answers with citations. Perfect for essay introductions and literature reviews. Unlike Google, every result is a peer-reviewed paper — not a random blog post. Free tier gives you 20 searches per day.</p>
+      <div class="tool-footer">
+        <div class="tool-tags">
+          <span class="tag">Research</span><span class="tag">Academic</span><span class="tag">Citations</span>
+        </div>
+        <a href="https://consensus.app" target="_blank" class="tool-link">Try Free →</a>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-name">🃏 Quizlet AI <span class="badge badge-freemium">Freemium</span></span>
+      </div>
+      <p class="tool-desc">Auto-generates flashcards, practice tests, and quizzes from any topic or your uploaded notes. The AI explanation feature breaks down why an answer is correct. Trusted by over 500 million students worldwide. Free plan covers most study needs.</p>
+      <div class="tool-footer">
+        <div class="tool-tags">
+          <span class="tag">Flashcards</span><span class="tag">Exams</span><span class="tag">Quiz</span>
+        </div>
+        <a href="https://quizlet.com" target="_blank" class="tool-link">Try Free →</a>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <h2 id="writing">2. Writing & Essay Tools</h2>
+    <p>From fixing grammar to structuring arguments, these tools help you write better essays and reports in less time.</p>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-name">✏️ Grammarly <span class="badge badge-freemium">Freemium</span></span>
+      </div>
+      <p class="tool-desc">The industry standard for student writing. Catches grammar and spelling mistakes, suggests clearer phrasing, and improves your overall writing tone. Works as a browser extension so it helps you everywhere — Google Docs, emails, and even LinkedIn. The free plan is genuinely useful and more than enough for most students.</p>
+      <div class="tool-footer">
+        <div class="tool-tags">
+          <span class="tag">Writing</span><span class="tag">Grammar</span><span class="tag">Essays</span>
+        </div>
+        <a href="https://www.grammarly.com" target="_blank" class="tool-link">Try Free →</a>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-name">🔍 Perplexity AI <span class="badge badge-free">Free</span></span>
+      </div>
+      <p class="tool-desc">Think of it as a smarter Google. Ask any research question and get a summarized answer with real cited sources you can verify. Great for quickly understanding a topic before writing about it. Far more reliable than asking ChatGPT directly, since every claim is linked to a source.</p>
+      <div class="tool-footer">
+        <div class="tool-tags">
+          <span class="tag">Research</span><span class="tag">Writing</span><span class="tag">Sources</span>
+        </div>
+        <a href="https://www.perplexity.ai" target="_blank" class="tool-link">Try Free →</a>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <p>💡 <strong>Pro tip:</strong> Use Perplexity to find sources and understand the topic, then use Grammarly to polish your final essay. Together they cover the full writing workflow for free.</p>
+    </div>
+
+    <!-- SECTION 3 -->
+    <h2 id="coding">3. Coding Tools</h2>
+    <p>Whether you're in your first programming class or building projects for your portfolio, these tools will make you code faster and understand errors instantly.</p>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-name">👨‍💻 GitHub Copilot <span class="badge badge-free">Free for Students</span></span>
+      </div>
+      <p class="tool-desc">The world's most used AI coding assistant — and it's completely free for students with a .edu email or GitHub Student Developer Pack. Autocompletes code, explains errors, and suggests entire functions as you type. Works inside VS Code. If you write any code at all, this is a must-have.</p>
+      <div class="tool-footer">
+        <div class="tool-tags">
+          <span class="tag">Coding</span><span class="tag">VS Code</span><span class="tag">Autocomplete</span>
+        </div>
+        <a href="https://github.com/features/copilot" target="_blank" class="tool-link">Try Free →</a>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-name">🚀 Bolt.new <span class="badge badge-freemium">Freemium</span></span>
+      </div>
+      <p class="tool-desc">Build full web apps just by describing what you want in plain English. No setup, no terminal, no config. Great for students who want to build portfolio projects without getting stuck on environment issues. The free tier gives you enough credits to build and demo a working project.</p>
+      <div class="tool-footer">
+        <div class="tool-tags">
+          <span class="tag">App Builder</span><span class="tag">No-Code</span><span class="tag">Portfolio</span>
+        </div>
+        <a href="https://bolt.new" target="_blank" class="tool-link">Try Free →</a>
+      </div>
+    </div>
+
+    <!-- SECTION 4 -->
+    <h2 id="productivity">4. Productivity & Note-Taking</h2>
+    <p>Stay on top of lectures, meetings, and deadlines with these AI-powered productivity tools.</p>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-name">🎙️ Otter.ai <span class="badge badge-freemium">Freemium</span></span>
+      </div>
+      <p class="tool-desc">Records and transcribes lectures, study group sessions, and online classes in real time. The AI summary feature condenses a 1-hour lecture into bullet points you can review in 5 minutes. Free plan gives you 300 minutes of transcription per month — more than enough for most students.</p>
+      <div class="tool-footer">
+        <div class="tool-tags">
+          <span class="tag">Notes</span><span class="tag">Lectures</span><span class="tag">Transcription</span>
+        </div>
+        <a href="https://otter.ai" target="_blank" class="tool-link">Try Free →</a>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-name">📊 Gamma.app <span class="badge badge-freemium">Freemium</span></span>
+      </div>
+      <p class="tool-desc">Creates beautiful presentations from a single text prompt. Type your topic, pick a style, and get a fully designed slide deck in under 60 seconds. Way faster than PowerPoint for class presentations and project demos. Free plan includes unlimited AI generations with a Gamma watermark.</p>
+      <div class="tool-footer">
+        <div class="tool-tags">
+          <span class="tag">Presentations</span><span class="tag">Slides</span><span class="tag">Design</span>
+        </div>
+        <a href="https://gamma.app" target="_blank" class="tool-link">Try Free →</a>
+      </div>
+    </div>
+
+    <!-- SUMMARY TABLE -->
+    <h2 id="summary">Quick Summary</h2>
+    <p>Here's a fast reference of all the tools covered in this guide:</p>
+
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Best For</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>NotebookLM</td><td>Studying from your own notes & PDFs</td><td>Free</td></tr>
+        <tr><td>Consensus</td><td>Academic research with citations</td><td>Free</td></tr>
+        <tr><td>Quizlet AI</td><td>Flashcards & exam prep</td><td>Freemium</td></tr>
+        <tr><td>Grammarly</td><td>Essay writing & grammar</td><td>Freemium</td></tr>
+        <tr><td>Perplexity AI</td><td>Research with verified sources</td><td>Free</td></tr>
+        <tr><td>GitHub Copilot</td><td>Coding assistance</td><td>Free (students)</td></tr>
+        <tr><td>Bolt.new</td><td>Building web apps fast</td><td>Freemium</td></tr>
+        <tr><td>Otter.ai</td><td>Recording & transcribing lectures</td><td>Freemium</td></tr>
+        <tr><td>Gamma.app</td><td>Creating presentations instantly</td><td>Freemium</td></tr>
+      </tbody>
+    </table>
+
+    <div class="cta-box">
+      <h3>⚡ Explore More AI Tools</h3>
+      <p>ToolVerse curates the best AI tools updated weekly — all in one place.</p>
+      <a href="https://toolsverseai.netlify.app" class="cta-btn">Browse Full Directory →</a>
+    </div>
+
+  </article>
+
+  <footer>
+    © 2026 ToolVerse · <a href="https://toolsverseai.netlify.app">toolsverseai.netlify.app</a> · Some links may be affiliate links.
+  </footer>
+
+</body>
+</html>
