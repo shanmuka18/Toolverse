@@ -2088,15 +2088,24 @@ function sendMessage() {
   chatHistory.push({ role: 'user', content: text });
   showTyping();
 
-  fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1000,
-      system: SYSTEM_PROMPT,
-      messages: chatHistory
-    })
+  fetch('/.netlify/functions/generate', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    idea: userIdea,
+    vibe: userVibe,
+    subject: userSubject
+  })
+})
+.then(res => res.json())
+.then(data => {
+  console.log(data);
+})
+.catch(err => {
+  console.error(err);
+});
   })
   .then(r => r.json())
   .then(data => {
